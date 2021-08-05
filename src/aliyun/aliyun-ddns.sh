@@ -249,7 +249,7 @@ function fun_get_local_wan_ip(){
 function fun_get_domian_server_ip(){
     fun_wirte_log "${message_info_tag}正在获取${var_second_level_domain}.${var_first_level_domain}的ip......"
     if [[ "${var_domian_server_ip}" = "nslookup" ]]; then
-        var_domian_server_ip=`nslookup -sil ${var_second_level_domain}.${var_first_level_domain} 2>/dev/null | grep Address: | sed 1d | sed s/Address://g | sed 's/ //g'`
+        var_domian_server_ip=`nslookup ${var_second_level_domain}.${var_first_level_domain} 2>/dev/null | grep Address: | sed 1d | sed s/Address://g | sed 's/ //g'`
     else
         var_domian_server_ip=`${var_domian_server_ip} | sed 's/;/ /g'`
     fi
@@ -670,7 +670,7 @@ function fun_get_now_timestamp(){
 
 # 获取当前时间戳 毫秒
 function fun_get_current_timestamp_ms(){
-  echo "$((`date '+%s'`*1000+`date '+%N'`/1000000))"
+  echo "$((`date '+%s'`*1000))"
 }
 
 # url编码
